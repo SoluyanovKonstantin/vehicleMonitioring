@@ -1,0 +1,44 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+
+    &__fade {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.144);
+    }
+
+    &__popup {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        padding-top: 50px;
+        padding-bottom: 10px;
+        background-color: white;
+        border-radius: 15px;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 20px;
+            background-image: url('/assets/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            top: 15px;
+            left: 15px;
+        }
+    }
+
+    &__form-field {
+        width: 100%;
+    }
+}

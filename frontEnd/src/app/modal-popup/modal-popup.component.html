@@ -1,0 +1,37 @@
+<div class="modal">
+    <div class="modal__fade" (click)="closePopup()"></div>
+    <form *ngIf="popUpName === openedPopup.login" [formGroup]="loginForm" class="modal__popup">
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Login</mat-label>
+            <input formControlName="userName" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="isHidePassword ? 'password' : 'text'">
+            <button type="button" tabindex="-1" mat-icon-button matSuffix (click)="changePasswordVisibility($event)"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isHidePassword">
+                <mat-icon>{{isHidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button (click)="signIn()" class="modal__button">Sign In</button>
+    </form>
+    <form *ngIf="popUpName === openedPopup.signUp" [formGroup]="signUpForm" class="modal__popup">
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Login</mat-label>
+            <input formControlName="userName" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="isHidePassword ? 'password' : 'text'">
+            <button type="button" tabindex="-1" mat-icon-button matSuffix (click)="changePasswordVisibility($event)"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isHidePassword">
+                <mat-icon>{{isHidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button (click)="signUp()" class="modal__button">Sign Up</button>
+    </form>
+</div>

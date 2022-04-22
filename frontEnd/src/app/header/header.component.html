@@ -1,0 +1,7 @@
+<header class="header">
+    <div *ngIf="!(isAuth$ | async); else nickname">
+        <button mat-raised-button (click)="openSignUpPopup()" color="accent" class="header__button">Sign Up</button>
+        <button mat-raised-button (click)="openLoginPopup()" class="header__button">Sign In</button>
+    </div>
+    <ng-template #nickname>{{(userInfo$ | async)?.name}}</ng-template>
+</header>
