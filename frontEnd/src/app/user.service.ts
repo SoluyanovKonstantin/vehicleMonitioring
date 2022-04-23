@@ -17,8 +17,9 @@ export class UserService {
   public userInfo$ = this.userInfo.asObservable();
 
   logIn(name: string, password: string): Observable<{name: string | undefined, token: string}> {
-    return this.http.post<{name: string | undefined, token: string}>('https://6262bf1e005a66e1e3acc4e3.mockapi.io/auth', {name, password}).pipe(
+    return this.http.post<{name: string | undefined, token: string}>('http://localhost:3000/users/login', {name, password}).pipe(
       tap((res) => {
+        console.log(res);
         this.userInfo.next({name: res.name});
         this.isAuth.next(true);
       }),
