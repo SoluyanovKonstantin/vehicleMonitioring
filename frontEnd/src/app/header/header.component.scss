@@ -7,5 +7,21 @@
 
     &__button {
         margin-right: 15px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+    }
+
+    &__username {
+        color: white;
+        margin-right: 10px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    &__profile {
+        display: flex;
+        flex-direction: column;
     }
 }

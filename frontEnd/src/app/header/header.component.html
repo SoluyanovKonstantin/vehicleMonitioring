@@ -4,8 +4,12 @@
         <button mat-raised-button (click)="openLoginPopup()" class="header__button">Sign In</button>
     </div>
     <ng-template #nickname>
-        <span class="header__username">{{(userInfo$ | async)?.name}}</span>
-        <button mat-raised-button class="header__exit-button">exit</button>
-        <button mat-raised-button class="header__delete-button">delete</button>
+        <div class="header__profile">
+            <span class="header__username">{{(userInfo$ | async)?.name}}</span>
+            <div>
+                <button mat-raised-button (click)="logOut()" class="header__button header__button--exit">exit</button>
+                <button mat-raised-button (click)="deleteAccount()" class="header__button header__button--delete">delete</button>
+            </div>
+        </div>
     </ng-template>
 </header>

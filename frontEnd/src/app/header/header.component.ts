@@ -28,4 +28,12 @@ export class HeaderComponent implements OnInit {
   openSignUpPopup(): void {
     this.popupService.openSignUpPopup();
   }
+
+  logOut(): void {
+    this.userService.logOut();
+  }
+
+  deleteAccount(): void {
+    this.userService.deleteAccount(); 
+  }
 }

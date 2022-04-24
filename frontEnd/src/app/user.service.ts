@@ -11,28 +11,37 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  private userInfo = new BehaviorSubject<{name: string | undefined}>({name: undefined});
+  private userInfo = new BehaviorSubject<{ name: string | undefined }>({ name: undefined });
   private isAuth: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private userId: string = '';
   public isAuth$: Observable<boolean> = this.isAuth.asObservable();
   public userInfo$ = this.userInfo.asObservable();
 
-  logIn(name: string, password: string): Observable<{name: string | undefined, token: string}> {
-    return this.http.post<{name: string | undefined, token: string}>('http://localhost:3000/users/login', {name, password}).pipe(
+  logIn(name: string, password: string): Observable<{ name: string | undefined, id: string }> {
+    return this.http.post<{ name: string | undefined, id: string }>('http://localhost:3000/users/login', { name, password }).pipe(
       tap((res) => {
-        console.log(res);
-        this.userInfo.next({name: res.name});
+        console.log(res.id);
+        this.userId = res.id;
+        this.userInfo.next({ name: res.name });
         this.isAuth.next(true);
       }),
     )
   }
 
-  create(name: string, email: string, password: string): Observable<{name: string | undefined, token: string}> {
-    return this.http.post<{name: string | undefined, token: string}>('http://localhost:3000/users/create', {name, email, password}).pipe(
+  logOut(): void {
+    this.userInfo.next({ name: undefined });
+    this.isAuth.next(false);
+  }
+
+  create(name: string, email: string, password: string): Observable<{ name: string | undefined, token: string }> {
+    return this.http.post<{ name: string | undefined, token: string }>('http://localhost:3000/users/create', { name, email, password }).pipe(
       tap((res) => {
         console.log(res);
-        this.userInfo.next({name: res.name});
-        this.isAuth.next(true);
       }),
     )
+  }
+
+  deleteAccount() {
+    this.http.delete<any>(`http://localhost:3000/users/${this.userId}`).subscribe();
   }
 }

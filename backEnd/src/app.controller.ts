@@ -9,10 +9,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  @Post('auth/login')
-  create(@Body() createUserDto: {name: string, password: string}) {
-    console.log(createUserDto);
-    return createUserDto;
-  }
 }
