@@ -53,6 +53,7 @@ export class ModalPopupComponent implements OnInit {
   }
 
   signUp(): void {
-    console.log(this.signUpForm);
+    this.userService.create(this.signUpForm.value.userName, this.signUpForm.value.email, this.signUpForm.value.password).subscribe();
+    this.closePopup();
   }
 }

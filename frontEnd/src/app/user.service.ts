@@ -25,4 +25,14 @@ export class UserService {
       }),
     )
   }
+
+  create(name: string, email: string, password: string): Observable<{name: string | undefined, token: string}> {
+    return this.http.post<{name: string | undefined, token: string}>('http://localhost:3000/users/create', {name, email, password}).pipe(
+      tap((res) => {
+        console.log(res);
+        this.userInfo.next({name: res.name});
+        this.isAuth.next(true);
+      }),
+    )
+  }
 }
