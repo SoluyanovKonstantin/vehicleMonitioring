@@ -1,28 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection, Schema } from '@nestjs/mongoose';
-import { Connection } from 'mongoose';
+import { InjectConnection, InjectModel, Schema } from '@nestjs/mongoose';
+import { Connection, Model } from 'mongoose';
 import mongoose from 'mongoose';
+import { User, UserDocument } from './user.schema';
 
-interface User {
+interface iUser {
     name: string,
     password: string
 }
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectConnection() private connection: Connection) { }
+    constructor(@InjectConnection() private connection: Connection, @InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
-    createUser(user: User) {
-        const collection = this.connection.collection("users");
-
-        return collection.insertOne(user);
+    createUser(user: iUser) {
+        const collection = this.connection.collection('users');
+        return collection.insertOne(user).catch((err) => {
+            return err;
+        });
     }
 
-    loginUser(user: User) {
+    loginUser(user: iUser) {
         const collection = this.connection.collection("users");
 
         return collection.findOne(user).then(res => {
-            return { name : res.name, id: res._id }
+            if (res?.isActive === 'none') throw new Error('deleted account')
+            return { name : res?.name, id: res?._id }
         });
     }
 

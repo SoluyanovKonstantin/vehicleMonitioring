@@ -61,6 +61,6 @@ export class VehicleService {
     return this.http.delete(`${url}/vehicles/${this.vehicles[id]._id}`).pipe( tap( res => {
       this.vehicles = this.vehicles.filter( (item, index) => index !== id );
       this.vehiclesSubject.next(this.vehicles);
-    } ) );
+    }));
   }
 }

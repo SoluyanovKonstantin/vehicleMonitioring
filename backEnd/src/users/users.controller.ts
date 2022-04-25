@@ -7,8 +7,9 @@ export class UsersController {
 
     @Post('/create')
     create(@Body() createUserDto: {name: string, password: string, email: string}) {
-        this.usersService.createUser(createUserDto);
-        return createUserDto;
+        this.usersService.createUser(createUserDto).then(() => {
+            return createUserDto;
+        }).catch(err => { throw new Error('dublicate name')});
     }
 
     @Post('/login')

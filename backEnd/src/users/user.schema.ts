@@ -1,13 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-    @Prop()
-    _id: ObjectId;
 
     @Prop()
     name: string;
@@ -22,4 +20,9 @@ export class User {
     removedAt: Date;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserSchema = new mongoose.Schema({
+    name: { type: String, unique: true },
+    password: String,
+    isActive: Boolean,
+    removedAt: Date
+})

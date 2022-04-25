@@ -71,8 +71,11 @@ export class ModalPopupComponent implements OnInit {
 
   signUp(): void {
     this.userService.create(this.signUpForm.value.userName, this.signUpForm.value.email, this.signUpForm.value.password).subscribe({
-      next: () => {
-        this.closePopup()
+      next: (res) => {
+        if (!res?.name) 
+          this.loginForm.controls['userName'].setErrors({ notUnique: true })
+        else
+          this.closePopup()
       },
       error: (err) => {
         this.loginForm.controls['userName'].setErrors({ notUnique: true })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { PopupService } from '../popup.service';
 import { UserService } from '../user.service';
 import { VehicleService } from '../vehicle.service';
@@ -10,7 +10,7 @@ import { VehicleService } from '../vehicle.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  constructor(private popupService: PopupService, private userService: UserService, private vehicleService: VehicleService) { }
+  constructor(private popupService: PopupService, private userService: UserService, private vehicleService: VehicleService, private elem: ElementRef<HTMLElement>) { }
 
   vehicles$ = this.vehicleService.vehicles$;
 
