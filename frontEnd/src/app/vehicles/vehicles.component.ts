@@ -24,7 +24,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   deleteVehicle(index: number) {
-    this.vehicleService.removeVehicle(index);
+    this.vehicleService.removeVehicle(index).subscribe();
   }
 
 }

@@ -13,6 +13,9 @@ export class Vehicle {
 
   @Prop()
   userId: string;
+
+  @Prop()
+  isActive: string;
 }
 
 export const VehicleSchema = SchemaFactory.createForClass(Vehicle);

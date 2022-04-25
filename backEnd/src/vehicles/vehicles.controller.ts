@@ -5,11 +5,6 @@ import { VehiclesService } from './vehicles.service';
 export class VehiclesController {
     constructor(private vehiclesService: VehiclesService) {}
 
-    @Get('/get/:vehicleId')
-    find(@Param('vehicleId') vehicleId: string) {
-        console.log('id ', vehicleId)
-    }
-
     @Get(':userId')
     findAll(@Param('userId') userId: string) {
         return this.vehiclesService.getVehiclesByUserId(userId);
@@ -27,7 +22,7 @@ export class VehiclesController {
 
     @Delete(':vehicleId')
     delete(@Param('vehicleId') vehicleId: string) {
-        return vehicleId;
+        return this.vehiclesService.removeVehicle({ id: vehicleId });
     }
 
 }
