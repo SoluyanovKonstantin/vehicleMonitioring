@@ -34,4 +34,15 @@
         </mat-form-field>
         <button mat-raised-button (click)="signUp()" class="modal__button">Sign Up</button>
     </form>
+    <form *ngIf="popUpName === openedPopup.vehicle" [formGroup]="vehicleForm" class="modal__popup">
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Vehicle name</mat-label>
+            <input formControlName="name" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="modal__form-field">
+            <mat-label>Vehicle number</mat-label>
+            <input matInput formControlName="number">
+        </mat-form-field>
+        <button mat-raised-button (click)="sendVehicle()" class="modal__button">Send</button>
+    </form>
 </div>

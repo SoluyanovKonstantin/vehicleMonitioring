@@ -9,12 +9,14 @@ import { ModalPopupComponent } from './modal-popup/modal-popup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    VehiclesComponent
   ],
   imports: [
     BrowserModule,

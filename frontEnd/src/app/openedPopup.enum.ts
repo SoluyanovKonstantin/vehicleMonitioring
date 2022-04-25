@@ -1,5 +1,6 @@
 export enum OpenedPopup {
     nothing,
     login,
-    signUp
+    signUp,
+    vehicle
 }

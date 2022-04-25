@@ -1,0 +1,7 @@
+<div *ngFor="let vehicle of (vehicles$ | async); index as i" class="vehicle__card">
+    <h1>{{vehicle.name}}</h1>
+    <p>{{vehicle.number}}</p>
+    <button mat-raised-button (click)="showVehiclePopup(i)" class="vehicle__button">Edit vehicle</button>
+    <button mat-raised-button (click)="deleteVehicle(i)" class="vehicle__button">Delete vehicle</button>
+</div>
+<button mat-raised-button (click)="showVehiclePopup(-1)" class="vehicle__button">Add vehicle</button>

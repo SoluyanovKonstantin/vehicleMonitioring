@@ -1,2 +1,5 @@
 <app-header></app-header>
+<main>
+    <app-vehicles *ngIf="isAuth$ | async"></app-vehicles>
+</main>
 <app-modal-popup></app-modal-popup>

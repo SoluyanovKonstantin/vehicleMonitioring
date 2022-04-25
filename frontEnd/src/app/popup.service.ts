@@ -20,4 +20,8 @@ export class PopupService {
   openSignUpPopup() {
     this.openedPopup.next(OpenedPopup.signUp);
   }
+
+  openVehiclePopup() {
+    this.openedPopup.next(OpenedPopup.vehicle);
+  }
 }
